@@ -22,7 +22,7 @@ podman build -f Containerfile.amd64 -t mycompany/denoiseit-lc .
 
 **NOTE**: You may want to use the `Containerfile.aarch64` to produce an image for an ARM64v8 target platform. In that case, the QEMU AARCH64 static binary (`qemu-aarch64-static`) must be in the same folder of the Containerfile.
 
-**NOTE**: You can choose which commit of the author's repo use as a codebase for the build process, passing the argument `--build-arg=commit=<SHA>` to the `podamn build` command. Replace *<SHAT>* with the hash of the designed commit.
+**NOTE**: You can choose which commit of the author's repo use as a codebase for the build process, passing the argument `--build-arg=commit=<SHA>` to the `podamn build` command. Replace *<SHA>* with the hash of the designed commit.
 
 ## Run the Image
 
@@ -43,4 +43,4 @@ In short, run the following command on your *input.mp4* file to extract the audi
 ffmpeg -i input.mp4 -acodec pcm_s16le -ac 2 -af "aresample=48000" denoiseit-input.wav
 ```
 
-Afterwards, I stick together the output of `denoiseit` and the video stream from the original input file.
+Afterwards, I stitch together the audio file obtained from `denoiseit` and the video stream from the original input file.

@@ -1,4 +1,4 @@
-FROM docker.io/arm32v7/alpine:3.15.0 AS builder
+FROM docker.io/arm32v7/alpine:3.17.1 AS builder
 
 COPY qemu-arm-static /usr/bin/
 
@@ -21,7 +21,7 @@ RUN cd /DenoiseIt && \
     cmake .. && \
     make
 
-FROM docker.io/arm32v7/alpine:3.15.0
+FROM docker.io/arm32v7/alpine:3.17.1
 
 COPY --from=builder /usr/bin/qemu-arm-static /usr/bin/
 
