@@ -1,7 +1,5 @@
 FROM docker.io/arm32v7/alpine:3.17.1 AS builder
 
-COPY qemu-arm-static /usr/bin/
-
 ARG commit=1e225260bb1f835f31a81d4bb022f99d1389fae7
 
 RUN apk add --no-cache \
@@ -23,15 +21,11 @@ RUN cd /DenoiseIt && \
 
 FROM docker.io/arm32v7/alpine:3.17.1
 
-COPY --from=builder /usr/bin/qemu-arm-static /usr/bin/
-
 RUN apk add --no-cache bash \
     libsndfile \
     rnnoise
 COPY --from=builder /DenoiseIt/build/denoiseit /usr/bin/denoiseit
 WORKDIR /workdir
 VOLUME ["/workdir"]
-
-RUN rm -rf /usr/bin/qemu-arm-static
 
 ENTRYPOINT ["/bin/bash"]

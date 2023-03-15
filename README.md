@@ -20,7 +20,7 @@ Run the following command in this repo's directory:
 podman build -f Containerfile.amd64 -t mycompany/denoiseit-lc .
 ```
 
-**NOTE**: You may want to use the `Containerfile.aarch64` to produce an image for an ARM64v8 target platform. In that case, the QEMU AARCH64 static binary (`qemu-aarch64-static`) must be in the same folder of the Containerfile.
+**NOTE**: You may want to use the `Containerfile.aarch64` to produce an image for an ARM64v8 target platform. In that case, the QEMU AARCH64 static binary (from package `qemu-user-static`) must be installed on the system.
 
 **NOTE**: You can choose which commit of the author's repo use as a codebase for the build process, passing the argument `--build-arg=commit=<SHA>` to the `podamn build` command. Replace *<SHA>* with the hash of the designed commit.
 
